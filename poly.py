@@ -116,15 +116,15 @@ class LinkedList:
         if coeff == 0:
             return
         x = self.dummy
-        if self.head.exp or self.head < exp:
-            i = self.head
-            while i.next.exp and i.next >= exp:
-                i = i.next
-            x.next = i.next
-            i.next = x
-        elif self.head.exp and self.head >= exp:
-            x.next = self.head
-            self.head = x   
+        while x.next.exp > exp and x.next:
+           x = x.next 
+        if x.next.exp < exp and x.next == None:
+            o = Node(coeff, exp, x.next)
+            x.next = o
+        elif x.next.exp == exp and x.next:
+            x.next.coeff += coeff
+            if x.next.coeff is 0:
+                x.next = x.next.next       
 
     # Add a polynomial p to the polynomial and return the resulting polynomial as a new linked list.
     def add(self, p):
