@@ -127,7 +127,7 @@ class LinkedList:
     # Add a polynomial p to the polynomial and return the resulting polynomial as a new linked list.
     def add(self, p):
         f = self.head
-        n = other.head
+        n = p.head
         a = LinkedList()
         while f or n:
             if f and n and f.exp == n.exp:
