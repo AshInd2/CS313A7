@@ -124,7 +124,6 @@ class LinkedList:
         elif self.head.exp and self.head >= exp:
             x.next = self.head
             self.head = x   
-        pass
 
     # Add a polynomial p to the polynomial and return the resulting polynomial as a new linked list.
     def add(self, p):
@@ -150,9 +149,7 @@ class LinkedList:
             elif n.exp > f.exp:
                 a.insert_term(n.coeff, n.exp)
                 n = n.next
-        return a                    
-
-        pass
+        return a                   
 
     # Multiply a polynomial p with the polynomial and return the product as a new linked list.
     def mult(self, p):
@@ -168,9 +165,7 @@ class LinkedList:
                 n = n.next
             a = a.add(t)
             f = f.next    
-        return a       
-
-        pass
+        return a      
 
     # Return a string representation of the polynomial.
     def __str__(self):
@@ -179,8 +174,7 @@ class LinkedList:
         while h:
             l.append(str(h))
             h = h.next
-        return " + ".join(l)    
-        pass
+        return " + ".join(l) 
 
 
 def main():
@@ -191,21 +185,26 @@ def main():
     # get sum of p and q as a new linked list and print sum
 
     # get product of p and q as a new linked list and print product
-    y = open('input.txt', 'r')
+    q = LinkedList
     p = int(input())
     for i in range(p):
-        q = LinkedList
-        q_2 = LinkedList()
-        j = int(input())
-        for i in range(j):
-            coeff, exp = input().split()
-            j.insert(int(coeff), int(exp))
-        z = int(input())
-        for i in range(z):
-            coeff, exp = input().split()
-            z.insert(int(coeff), int(exp))
-        c = j.add(z)
-        c_h = j.multiply(z)         
+        e = input().split()
+        g = int(e[1])
+        s = int(e[0])
+        q.insert_term(g, s)
+    z = input()
+    q_2 = LinkedList
+    j = int(input())
+    for i in range(j):
+        e = input().split()
+        g = int(e[1])
+        s = int(e[0])
+        q_2.insert_term(g, s)
+
+
+        c = q.add(q_2)
+        c_h = q.multiply(q_2)
+
         print(c)
         print(c_h)
     pass
