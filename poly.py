@@ -112,7 +112,9 @@ class LinkedList:
     # If a term with that exponent already exists, add the coefficients together.
     # You must keep the terms in descending order by exponent.
     def insert_term(self, coeff, exp):
-        x = Node(exp, coeff)
+        if coeff == 0:
+            return
+        x = Node(coeff, exp)
         if self.head.exp or self.head < exp:
             i = self.head
             while i.next.exp and i.next >= exp:
@@ -129,17 +131,24 @@ class LinkedList:
         f = self.head
         n = p.head
         a = LinkedList()
-        while f or n:
-            if f and n and f.exp == n.exp:
+        while f:
+            a.insert_term(f.coeff, f.exp)
+            f = f.next
+        while n:
+            a.insert_term(n.coeff, n.exp)
+            n = n.next        
+        while f and n:
+            if f.exp == n.exp:
                 s = f.coeff + n.coeff
                 if s:
-                    a.insert(s, f.exp)
+                    a.insert_term(s, f.exp)
                 f = f.next
                 n = n.next
-            elif f and (not n or f.exp > n.exp):
-                a.insert(f.coeff, f.exp)
+            elif f.exp > n.exp:
+                a.insert_term(f.coeff, f.exp)
                 f = f.next
-            elif n and (not f or n.exp > f.exp):
+            elif n.exp > f.exp:
+                a.insert_term(n.coeff, n.exp)
                 n = n.next
         return a                    
 
@@ -153,10 +162,12 @@ class LinkedList:
             t = LinkedList()
             n = p.head
             while n:
-                t.insert(f.coeff * n.coeff, f.exp + n.exp)
+                g = f.exp + n.exp 
+                s = f.coeff * n.coeff
+                t.insert_term(g,s)
                 n = n.next
             a = a.add(t)
-            f = f.next 
+            f = f.next    
         return a       
 
         pass
@@ -166,9 +177,9 @@ class LinkedList:
         h = self.head
         l = []
         while h:
-            l.append(f"{h.coeff} {h.exp}")
+            l.append(str(h))
             h = h.next
-        return " 0 ".join(l) if not h else " -> "    
+        return " + ".join(l)    
         pass
 
 
