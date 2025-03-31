@@ -115,16 +115,23 @@ class LinkedList:
     def insert_term(self, coeff, exp):
         if coeff == 0:
             return
-        x = self.dummy
-        while x.next.exp > exp and x.next:
-           x = x.next 
-        if x.next.exp < exp and x.next == None:
-            o = Node(coeff, exp, x.next)
-            x.next = o
-        elif x.next.exp == exp and x.next:
-            x.next.coeff += coeff
-            if x.next.coeff is 0:
-                x.next = x.next.next       
+        if self.dummy.next is None:
+            x = Node(coeff, exp)
+            return
+        j = self.dummy.next  
+        i = self.dummy
+
+        while exp < j.exp and j is not None:
+            j = j.next
+            i = j
+        x_2 = Node(coeff, exp)
+        if j.exp != exp and j is None:
+            x_2.next = j
+            i.next = x_2
+        elif j.exp == exp and j is not None:
+            j.coeff += coeff
+            if j.coeff == 0:
+                i.next = j.next 
 
     # Add a polynomial p to the polynomial and return the resulting polynomial as a new linked list.
     def add(self, p):
@@ -192,7 +199,7 @@ def main():
         e = input().split()
         g = int(e[1])
         s = int(e[0])
-        q.insert_term(g, s)
+        q.insert_term(g,s)
     z = input()
     q_2 = LinkedList
     j = int(input())
