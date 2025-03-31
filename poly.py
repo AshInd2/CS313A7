@@ -182,7 +182,7 @@ class LinkedList:
         while h:
             l.append(str(h))
             h = h.next
-        return " + ".join(l) 
+        return " + ".join(l) else "0"
 
 
 def main():
@@ -211,7 +211,7 @@ def main():
 
 
         c = q.add(q_2)
-        c_h = q.multiply(q_2)
+        c_h = q.mult(q_2)
 
         print(c)
         print(c_h)
