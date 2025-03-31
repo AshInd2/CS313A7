@@ -182,7 +182,7 @@ class LinkedList:
         while h:
             l.append(str(h))
             h = h.next
-        return " + ".join(l) else "0"
+        return " + ".join(l)
 
 
 def main():
